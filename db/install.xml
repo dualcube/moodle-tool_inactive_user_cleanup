@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="admin/tool/inactive_user_cleanup/db" VERSION="20140827" COMMENT="XMLDB file for Moodle admin/tool/inactive_user_cleanup"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="tool_inactive_user_cleanup" COMMENT="Contains the email customization of inactive user cleanup tool">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="daysbeforedeletion"/>
+          <FIELD NAME="daysbeforedeletion" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="daysofinactivity" COMMENT="Save Days Of Inactivity of User"/>
+          <FIELD NAME="daysofinactivity" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="daysbeforedeletion" NEXT="emailsubject" COMMENT="Save Days Of Inactivity of User"/>
+          <FIELD NAME="emailsubject" TYPE="text" LENGTH="50" NOTNULL="false" SEQUENCE="false" PREVIOUS="daysofinactivity" NEXT="emailbody" COMMENT="Save email subject"/>
+          <FIELD NAME="emailbody" TYPE="text" LENGTH="200" NOTNULL="false" SEQUENCE="false" PREVIOUS="emailsubject" COMMENT="Save email body"/>
+      </FIELDS>
+      <KEYS>
+          <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+        </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
