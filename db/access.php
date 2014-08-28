@@ -25,9 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-
-    // Allows the user to upload user pictures.
-    'tool/inactive_user_cleanup:inactive_user_cleanuppictures' => array(
+    'tool/inactive_user_cleanup:inactive_user_cleanup' => array(
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
