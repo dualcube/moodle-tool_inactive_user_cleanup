@@ -22,20 +22,24 @@
  * @copyright  2014 dualcube {@link http://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
+
 require_once('../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
 require_once($CFG->dirroot.'/'.$CFG->admin.'/tool/inactive_user_cleanup/email_form.php');
+
 require_login();
 admin_externalpage_setup('toolinactive_user_cleanup');
+
 echo $OUTPUT->header();
+
 $settingpanelinsert = new stdClass;
 $settingpanelupdate = new stdClass;
 $emailform = new admin_email_form();
+
 $emailform->display();
 $fromdata = $emailform->get_data();
+
 if ($emailform->is_submitted()) {
-    var_dump ($fromdata);
     $settingpanelinsert->daysbeforedeletion = $fromdata->config_daysbeforedeletion;
     $settingpanelinsert->daysofinactivity = $fromdata->config_daysofinactivity;
     $settingpanelinsert->emailsubject = $fromdata->config_subjectemail;
@@ -57,6 +61,5 @@ if ($emailform->is_submitted()) {
         $DB->update_record('tool_inactive_user_cleanup', $settingpanelupdate);
     }
 }
+
 echo $OUTPUT->footer();
-
-

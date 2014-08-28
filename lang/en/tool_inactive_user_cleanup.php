@@ -18,7 +18,7 @@
  * Strings for component 'tool_inactive_user_cleanup', language 'en', branch 'MOODLE_22_STABLE'
  *
  * @package    tool
- * @subpackage inactive_user_cleanup
+ * @subpackage inactive user cleanup
  * @copyright  2014 Dualcube {@link http://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

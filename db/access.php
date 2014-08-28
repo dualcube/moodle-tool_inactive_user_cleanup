@@ -15,10 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines the capabilities used by the user upload admin tool
+ * Defines the capabilities of admin to use admin tool
  *
- * @package    tool_inactive_user_cleanup
- * @copyright  2014 dualcube {@link http://dualcube.com}
+ * @package    tool
+ * @subpackage inactive user cleanup
+ * @copyright  2014 Dualcube {@link http://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -32,6 +33,6 @@ $capabilities = array(
         'archetypes' => array(
             'manager' => CAP_ALLOW
         ),
-        'clonepermissionsfrom' =>  'moodle/site:inactive_user_cleanups',
+        'clonepermissionsfrom' => 'moodle/site:inactive_user_cleanups',
     ),
 );

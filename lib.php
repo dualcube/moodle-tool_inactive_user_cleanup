@@ -23,10 +23,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
  defined('MOODLE_INTERNAL') || die;
-
-/**
+/*
  * Standard cron function
  */
+require_once($CFG->libdir.'/adminlib.php');
+require_capability('moodle/user:delete', context_system::instance());
 function tool_inactive_user_cleanup_cron() {
     global $DB, $CFG;
     mtrace("Hey, admin tool inactive user cleanup is running");
@@ -36,32 +37,26 @@ function tool_inactive_user_cleanup_cron() {
         $beforedelete = $emailsettingdetails->daysbeforedeletion;
         $subject = $emailsettingdetails->emailsubject;
         $body = $emailsettingdetails->emailbody;
-        mtrace($inactivity);
     }
     $users = $DB->get_records('user');
     foreach ($users as $usersdetails) {
-        mtrace($subject);
-        mtrace($body);
-        mtrace($usersdetails->id);
         $messagetext = html_to_text($body);
-        if (date("d-m-y", $usersdetails->lastlogin) - date("d-m-y") > $inactivity) {
+        if (date("d-m-y", $usersdetails->lastlogin) - date("d-m-y") > $inactivity and $usersdetails->deleted == 0) {
             if ($mailresults = email_to_user($usersdetails, $users, $subject, $messagetext)) {
+                mtrace('id');
+                mtrace($usersdetails->id);
+                mtrace(date("d-m-y", $usersdetails->lastlogin) - date("d-m-y"));
                 mtrace('email sent');
             }
         }
-        if ($beforedelete != 0) {
-            $deleted = 1;
-            $username = $usersdetails->email . '.' . time();
-            $letters = 'abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-            $deleteemail = substr(str_shuffle($letters), 0, 32);
+        if ($beforedelete != 0 and $usersdetails->deleted == 0) {
             if ((date("d-m-y", $usersdetails->lastlogin) - date("d-m-y")) >= ($inactivity + $beforedelete)) {
-                $sql = 'update {user} set deleted = ?, username = ?, email = ? where id = ?';
-                //$DB->execute($sql, array($deleted, $username, $deleteemail, $usersdetails->id));
-                delete_user($user);
+                delete_user($usersdetails);
                 mtrace('delete user' . $usersdetails->id);
             }
         }
     }
     return true;
 }
+
 

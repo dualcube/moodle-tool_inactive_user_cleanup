@@ -24,12 +24,11 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
-require_once $CFG->libdir.'/formslib.php';
+require_once($CFG->libdir.'/formslib.php');
 require_once($CFG->dirroot . '/user/editlib.php');
 
 class admin_email_form extends moodleform {
-    function definition () {
+    public function definition () {
         $mform = $this->_form;
         $mform->addElement('header', 'configheader', get_string('setting', 'tool_inactive_user_cleanup'));
         $mform->addElement('text', 'config_daysofinactivity', get_string('daysofinactivity', 'tool_inactive_user_cleanup'));
@@ -50,4 +49,3 @@ class admin_email_form extends moodleform {
         $this->add_action_buttons();
     }
 }
-
