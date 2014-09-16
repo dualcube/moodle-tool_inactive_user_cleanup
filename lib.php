@@ -31,25 +31,23 @@ require_capability('moodle/user:delete', context_system::instance());
 function tool_inactive_user_cleanup_cron() {
     global $DB, $CFG;
     mtrace("Hey, admin tool inactive user cleanup is running");
-    $emailsetting = $DB->get_records('tool_inactive_user_cleanup');
-    foreach ($emailsetting as $emailsettingdetails) {
-        $inactivity = $emailsettingdetails->daysofinactivity;
-        $beforedelete = $emailsettingdetails->daysbeforedeletion;
-        $subject = $emailsettingdetails->emailsubject;
-        $body = $emailsettingdetails->emailbody;
-    }
-    $users = $DB->get_records('user');
+    $inactivity = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
+    $beforedelete = get_config('tool_inactive_user_cleanup', 'daysofinactivity');
+    $subject = get_config('tool_inactive_user_cleanup', 'emailsubject');
+    $body = get_config('tool_inactive_user_cleanup', 'emailbody');
+    $users = $DB->get_records('user', array('deleted' => '0'));
+    $messagetext = html_to_text($body);
     foreach ($users as $usersdetails) {
-        $messagetext = html_to_text($body);
-        if (date("d-m-y", $usersdetails->lastlogin) - date("d-m-y") > $inactivity and $usersdetails->deleted == 0) {
+        if (date("d-m-y", $usersdetails->lastlogin) - date("d-m-y") > $inactivity) {
             if ($mailresults = email_to_user($usersdetails, $users, $subject, $messagetext)) {
                 mtrace('id');
                 mtrace($usersdetails->id);
+                mtrace('inactivity');
                 mtrace(date("d-m-y", $usersdetails->lastlogin) - date("d-m-y"));
                 mtrace('email sent');
             }
         }
-        if ($beforedelete != 0 and $usersdetails->deleted == 0) {
+        if ($beforedelete != 0) {
             if ((date("d-m-y", $usersdetails->lastlogin) - date("d-m-y")) >= ($inactivity + $beforedelete)) {
                 delete_user($usersdetails);
                 mtrace('delete user' . $usersdetails->id);
@@ -58,5 +56,4 @@ function tool_inactive_user_cleanup_cron() {
     }
     return true;
 }
-
 

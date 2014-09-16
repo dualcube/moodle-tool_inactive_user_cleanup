@@ -32,34 +32,16 @@ admin_externalpage_setup('toolinactive_user_cleanup');
 
 echo $OUTPUT->header();
 
-$settingpanelinsert = new stdClass;
-$settingpanelupdate = new stdClass;
 $emailform = new admin_email_form();
 
 $emailform->display();
 $fromdata = $emailform->get_data();
 
 if ($emailform->is_submitted()) {
-    $settingpanelinsert->daysbeforedeletion = $fromdata->config_daysbeforedeletion;
-    $settingpanelinsert->daysofinactivity = $fromdata->config_daysofinactivity;
-    $settingpanelinsert->emailsubject = $fromdata->config_subjectemail;
-    $settingpanelinsert->emailbody = $fromdata->config_bodyemail['text'];
-    $count = $DB->count_records('tool_inactive_user_cleanup');
-    $id = $DB->get_records_sql('select id as ids from {tool_inactive_user_cleanup}');
-    if ($count > 0) {
-        foreach ($id as $updateid) {
-            $settingpanelupdate->id = $updateid->ids;
-        }
-    }
-    $settingpanelupdate->daysbeforedeletion = $fromdata->config_daysbeforedeletion;
-    $settingpanelupdate->daysofinactivity = $fromdata->config_daysofinactivity;
-    $settingpanelupdate->emailsubject = $fromdata->config_subjectemail;
-    $settingpanelupdate->emailbody = $fromdata->config_bodyemail['text'];
-    if ($count == 0) {
-        $DB->insert_record('tool_inactive_user_cleanup', $settingpanelinsert);
-    } else {
-        $DB->update_record('tool_inactive_user_cleanup', $settingpanelupdate);
-    }
+    set_config('daysbeforedeletion', $fromdata->config_daysbeforedeletion, 'tool_inactive_user_cleanup');
+    set_config('daysofinactivity', $fromdata->config_daysofinactivity, 'tool_inactive_user_cleanup');
+    set_config('emailsubject', $fromdata->config_subjectemail, 'tool_inactive_user_cleanup');
+    set_config('emailbody', $fromdata->config_bodyemail['text'], 'tool_inactive_user_cleanup');
 }
 
 echo $OUTPUT->footer();
