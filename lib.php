@@ -27,7 +27,7 @@
  * Standard cron function
  */
 require_once($CFG->libdir.'/adminlib.php');
-require_capability('moodle/user:delete', context_system::instance());
+has_capability('moodle/user:delete', context_system::instance());
 function tool_inactive_user_cleanup_cron() {
     global $DB, $CFG;
     mtrace("Hey, admin tool inactive user cleanup is running");
