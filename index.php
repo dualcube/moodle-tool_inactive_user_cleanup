@@ -84,9 +84,4 @@ if ($emailform->is_submitted()) {
     set_config('emailbody', $fromdata->config_bodyemail['text'], 'tool_inactive_user_cleanup');
 }
 
-<<<<<<< HEAD
 echo $OUTPUT->footer();
-=======
-echo $OUTPUT->footer();
-
->>>>>>> 43c6e470b0ef87df91c37067e40c5687d0066ef4

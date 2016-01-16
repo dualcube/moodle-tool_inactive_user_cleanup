@@ -37,7 +37,6 @@ function tool_inactive_user_cleanup_cron() {
     $body = get_config('tool_inactive_user_cleanup', 'emailbody');
     $users = $DB->get_records('user', array('deleted' => '0'));
     $messagetext = html_to_text($body);
-<<<<<<< HEAD
     $mainadminuser = get_admin();
     
     foreach ($users as $usersdetails) {
@@ -47,36 +46,17 @@ function tool_inactive_user_cleanup_cron() {
                 mtrace('id');
                 mtrace($usersdetails->id);
                 mtrace($minus);
-=======
-    foreach ($users as $usersdetails) {
-        if (date("d-m-y", $usersdetails->lastlogin) - date("d-m-y") > $inactivity) {
-            if ($mailresults = email_to_user($usersdetails, $users, $subject, $messagetext)) {
-                mtrace('id');
-                mtrace($usersdetails->id);
-                mtrace('inactivity');
-                mtrace(date("d-m-y", $usersdetails->lastlogin) - date("d-m-y"));
->>>>>>> 43c6e470b0ef87df91c37067e40c5687d0066ef4
                 mtrace('email sent');
             }
         }
         if ($beforedelete != 0) {
-<<<<<<< HEAD
             if (($minus) >= ($inactivity + $beforedelete)) {
                 if (!isguestuser($usersdetails->id)) {
                     delete_user($usersdetails);
                     mtrace('delete user' . $usersdetails->id);
                 }
-=======
-            if ((date("d-m-y", $usersdetails->lastlogin) - date("d-m-y")) >= ($inactivity + $beforedelete)) {
-                delete_user($usersdetails);
-                mtrace('delete user' . $usersdetails->id);
->>>>>>> 43c6e470b0ef87df91c37067e40c5687d0066ef4
             }
         }
     }
     return true;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 43c6e470b0ef87df91c37067e40c5687d0066ef4
