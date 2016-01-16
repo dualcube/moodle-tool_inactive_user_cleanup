@@ -25,7 +25,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+<<<<<<< HEAD
 $plugin->version   = 2015091002; // The current plugin version (Date: YYYYMMDDXX).
+=======
+$plugin->version   = 2015091000; // The current plugin version (Date: YYYYMMDDXX).
+>>>>>>> 43c6e470b0ef87df91c37067e40c5687d0066ef4
 $plugin->requires  = 2012112900;  // Requires this Moodle version.
 $plugin->component = 'tool_inactive_user_cleanup'; // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
