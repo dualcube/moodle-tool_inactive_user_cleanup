@@ -44,7 +44,7 @@ class tool_inactive_user_cleanup_config_form extends moodleform {
         $mform->addElement('editor', 'config_bodyemail', get_string('emailbody', 'tool_inactive_user_cleanup'), $editoroptions);
         $mform->setType('config_subjectemail', PARAM_TEXT);
         $mform->setDefault('config_subjectemail', 'subject');
-        $mform->setType('config_bodyemail', PARAM_TEXT);
+        $mform->setType('config_bodyemail', PARAM_RAW);
         $mform->setDefault('config_bodyemail', 'body');
         $this->add_action_buttons();
     }

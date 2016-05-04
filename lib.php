@@ -38,25 +38,38 @@ function tool_inactive_user_cleanup_cron() {
     $users = $DB->get_records('user', array('deleted' => '0'));
     $messagetext = html_to_text($body);
     $mainadminuser = get_admin();
+
     
     foreach ($users as $usersdetails) {
         $minus = round((time() - $usersdetails->lastaccess)/60/60/24);
         if ($minus > $inactivity) {
-            if (email_to_user($usersdetails, $mainadminuser, $subject, $messagetext)) {
-                mtrace('id');
-                mtrace($usersdetails->id);
-                mtrace($minus);
-                mtrace('email sent');
+            $ischeck = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
+            if (!$ischeck) {
+                $record = new stdClass();
+                $record->userid = $usersdetails->id;
+                $usersdetails->email = 'sandipamukherjee1990@gmail.com';
+                if (email_to_user($usersdetails, $mainadminuser, $subject, $messagetext)) {
+                    mtrace('id');
+                    mtrace($usersdetails->id. '---' .$usersdetails->email);
+                    mtrace('minus'.$minus);
+                    mtrace('email sent');
+                    $record->emailsent = 1;
+                    $record->date = time();
+                    $lastinsertid = $DB->insert_record('tool_inactive_user_cleanup', $record, false);
+                }
             }
         }
         if ($beforedelete != 0) {
-            if (($minus) >= ($inactivity + $beforedelete)) {
+            $deleteuserafternotify = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
+            //mtrace('days before delete'. strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date));
+            if (($minus) >= ( strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date) )) {
                 if (!isguestuser($usersdetails->id)) {
-                    delete_user($usersdetails);
+                    //delete_user($usersdetails);
                     mtrace('delete user' . $usersdetails->id);
                 }
             }
         }
+        
     }
     return true;
 }
