@@ -13,13 +13,6 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
 
     
     public function execute() {
-        mtrace('abc123');
-        $to = "sandipa@dualcube.com";
-        $subject = "Inactive user cleanup";
-        $txt = "Inactive user cleanup";
-        $headers = "From: sandipamukherjee1990@gmail.com" . "\r\n" .
-        "CC: sandipamukherjee1990@gmail.com";
-        mail($to,$subject,$txt,$headers);
-        mtrace('abcd');
+        
     }//end of function execute()
 }// End of class
