@@ -31,14 +31,14 @@ has_capability('moodle/user:delete', context_system::instance());
 function tool_inactive_user_cleanup_cron() {
     global $DB, $CFG;
     mtrace("Hey, admin tool inactive user cleanup is running");
-    
-    //get config values from the databse 
+
+    //get config values from the databse
     $beforedelete = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
     $inactivity = get_config('tool_inactive_user_cleanup', 'daysofinactivity');
     $subject = get_config('tool_inactive_user_cleanup', 'emailsubject');
     $body = get_config('tool_inactive_user_cleanup', 'emailbody');
     $ignoredisabled = get_config('tool_inactive_user_cleanup', 'ignoredisabledusers');
-    
+
     //retrieve user data
     if ($ignoredisabled) {
         $users = $DB->get_records('user', array('deleted' => '0', 'suspended' => '0'));
@@ -46,11 +46,17 @@ function tool_inactive_user_cleanup_cron() {
     else {
         $users = $DB->get_records('user', array('deleted' => '0'));
     }
-    
+
+    //process email details
     $messagetext = html_to_text($body);
     $mainadminuser = get_admin();
 
-    
+    // create email personalization object
+    $a = array();
+    $a['sitename']    = format_string($site->fullname);
+    $a['loginlink']   = $CFG->wwwroot .'/login/';
+    $a['signoff']     = generate_email_signoff();
+
     foreach ($users as $usersdetails) {
         $minus = round((time() - $usersdetails->lastaccess)/60/60/24);
         if ($minus > $inactivity) {
@@ -58,11 +64,38 @@ function tool_inactive_user_cleanup_cron() {
             if (!$ischeck) {
                 $record = new stdClass();
                 $record->userid = $usersdetails->id;
-                if (email_to_user($usersdetails, $mainadminuser, $subject, $messagetext)) {
-                    mtrace('id');
-                    mtrace($usersdetails->id. '---' .$usersdetails->email);
-                    mtrace('minus'.$minus);
-                    mtrace('email sent');
+
+                //per-user settings for $a
+                $a['fullname']  = fullname($usersdetails, false);
+                $a['username']  = $usersdetails->username;
+                $a['firstname'] = $usersdetails->firstname;
+
+                //run the string replacement
+                $search = array();
+                $replace = array();
+                foreach ( $a as $key => $value) {
+                    $search[]  = '{$a->'.$key.'}';
+                    $replace[] = (string)$value;
+                }
+                if ($search) {
+                    $messagetextuser = str_replace($search, $replace, $messagetext);
+                }
+                else {
+                 $messagetextuser = $messagetext;
+                }
+
+
+                if (email_to_user($usersdetails, $mainadminuser, $subject, $messagetextuser)) {
+                    //debugging options
+                    //mtrace('id');
+                    //mtrace($usersdetails->id. '---' .$usersdetails->email);
+                    //mtrace('email body' . $messagetext);
+                    //mtrace('user details '. print_r($usersdetails, true));
+                    //mtrace('search strings' . print_r($search, true));
+                    //mtrace('replace strings' . print_r($replace, true));
+                    //mtrace('minus'.$minus);
+                    //mtrace('email sent');
+
                     $record->emailsent = 1;
                     $record->date = time();
                     $lastinsertid = $DB->insert_record('tool_inactive_user_cleanup', $record, false);
@@ -79,7 +112,8 @@ function tool_inactive_user_cleanup_cron() {
                 }
             }
         }
-        
+
     }
     return true;
 }
+ 
