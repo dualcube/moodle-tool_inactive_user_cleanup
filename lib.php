@@ -31,11 +31,22 @@ has_capability('moodle/user:delete', context_system::instance());
 function tool_inactive_user_cleanup_cron() {
     global $DB, $CFG;
     mtrace("Hey, admin tool inactive user cleanup is running");
+    
+    //get config values from the databse 
     $beforedelete = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
     $inactivity = get_config('tool_inactive_user_cleanup', 'daysofinactivity');
     $subject = get_config('tool_inactive_user_cleanup', 'emailsubject');
     $body = get_config('tool_inactive_user_cleanup', 'emailbody');
-    $users = $DB->get_records('user', array('deleted' => '0'));
+    $ignoredisabled = get_config('tool_inactive_user_cleanup', 'ignoredisabledusers');
+    
+    //retrieve user data
+    if ($ignoredisabled) {
+        $users = $DB->get_records('user', array('deleted' => '0', 'suspended' => '0'));
+    }
+    else {
+        $users = $DB->get_records('user', array('deleted' => '0'));
+    }
+    
     $messagetext = html_to_text($body);
     $mainadminuser = get_admin();
 
