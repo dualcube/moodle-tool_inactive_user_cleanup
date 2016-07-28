@@ -31,4 +31,4 @@ $string['emailsetting'] = 'Email Setting';
 $string['emailsubject'] = 'Subject';
 $string['emailbody'] = 'Body';
 $string['runcron'] = 'Run Cron Manually';
-
+$string['ignoredisabledusers'] = 'Ignore Disabled Users';
