@@ -60,10 +60,10 @@ function tool_inactive_user_cleanup_cron() {
         }
         if ($beforedelete != 0) {
             $deleteuserafternotify = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
-            //mtrace('days before delete'. strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date));
+            mtrace('days before delete'. strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date));
             if (($minus) >= ( strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date) )) {
                 if (!isguestuser($usersdetails->id)) {
-                    //delete_user($usersdetails);
+                    delete_user($usersdetails);
                     mtrace('delete user' . $usersdetails->id);
                 }
             }
