@@ -30,13 +30,18 @@ require_once($CFG->dirroot . '/user/editlib.php');
 class tool_inactive_user_cleanup_config_form extends moodleform {
     public function definition () {
         $mform = $this->_form;
+        
+        //Settings panel elements
         $mform->addElement('header', 'configheader', get_string('setting', 'tool_inactive_user_cleanup'));
         $mform->addElement('text', 'config_daysofinactivity', get_string('daysofinactivity', 'tool_inactive_user_cleanup'));
         $mform->addElement('text', 'config_daysbeforedeletion', get_string('daysbeforedeletion', 'tool_inactive_user_cleanup'));
+        $mform->addElement('advcheckbox','config_ignoredisabledusers', get_string('ignoredisabledusers', 'tool_inactive_user_cleanup'));
         $mform->setDefault('config_daysofinactivity', '365');
         $mform->setType('config_daysofinactivity', PARAM_TEXT);
         $mform->setDefault('config_daysbeforedeletion', '10');
         $mform->setType('config_daysbeforedeletion', PARAM_TEXT);
+        
+        // Email panel elements
         $mform->addElement('header', 'config_headeremail', get_string('emailsetting', 'tool_inactive_user_cleanup'));
         $mform->addElement('text', 'config_subjectemail', get_string('emailsubject', 'tool_inactive_user_cleanup'));
         $editoroptions = array('trusttext' => true, 'subdirs' => true, 'maxfiles' => 1,

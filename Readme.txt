@@ -16,12 +16,12 @@ Using
 
 Some setting is require for this cleanup process.
 
-•	Setting Panel
+â€¢	Setting Panel
 Days of Inactivity is set by the admin user.
-Days Before Deletion is set with zero when admin just wants to notify the inactive user for access the site i.e. in first step. 
-After that when user wants to run cleanup process then Days Before Deletion will set by the admin user.
+Days Before Deletion is set with zero when admin just wants to notify the inactive user for access the site i.e. in first step. After that when user wants to run cleanup process then Days Before Deletion will set by the admin user.
+Ignore Disabled Users is set when admin wants to ignore users in the 'suspended' state when running the cleanup tool.
 
-•	Email setting
+â€¢	Email setting
 
 Admin user must set the subject and body text of the email.
 Cron process
