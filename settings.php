@@ -19,7 +19,7 @@
  *
  * @package    tool
  * @subpackage inactive user cleanup
- * @copyright  2014 dualcube {@link http://dualcube.com}
+ * @copyright  2014 dualcube {@link https://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -29,6 +29,3 @@ if ($hassiteconfig) {
         new admin_externalpage('toolinactive_user_cleanup', get_string('pluginname', 'tool_inactive_user_cleanup'),
         "$CFG->wwwroot/$CFG->admin/tool/inactive_user_cleanup/index.php", 'moodle/site:config'));
 }
-
-
-
