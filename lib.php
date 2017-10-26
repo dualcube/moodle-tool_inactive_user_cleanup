@@ -19,7 +19,7 @@
  *
  * @package    tool
  * @subpackage inactive user cleanup
- * @copyright  2014 dualcube {@link http://dualcube.com}
+ * @copyright  2014 dualcube {@link https://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
  defined('MOODLE_INTERNAL') || die;
@@ -60,15 +60,18 @@ function tool_inactive_user_cleanup_cron() {
         }
         if ($beforedelete != 0) {
             $deleteuserafternotify = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
-            mtrace('days before delete'. strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date));
-            if (($minus) >= ( strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date) )) {
-                if (!isguestuser($usersdetails->id)) {
-                    delete_user($usersdetails);
-                    mtrace('delete user' . $usersdetails->id);
+            if (!empty($deleteuserafternotify)) {
+                mtrace('days before delete'. strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date));
+                $minus_timestamp = strtotime('+' . $minus .' days');
+
+                if (($minus_timestamp) >= ( strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date) )) {
+                    if (!isguestuser($usersdetails->id)) {
+                        delete_user($usersdetails);
+                        mtrace('delete user' . $usersdetails->id);
+                    }
                 }
             }
-        }
-        
+        } 
     }
     return true;
 }
