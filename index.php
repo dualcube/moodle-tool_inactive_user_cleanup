@@ -40,7 +40,7 @@
 
  * @subpackage Inactive User cleanup
 
- * @copyright  2014 dualcube {@link http://dualcube.com}
+ * @copyright  2014 dualcube {@link https://dualcube.com}
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 
