@@ -19,16 +19,14 @@
  *
  * @package    tool
  * @subpackage inactive user cleanup
- * @copyright  2014 dualcube {@link http://dualcube.com}
+ * @copyright  2014 dualcube {@link https://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2015091007; // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2015091008; // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2012112900;  // Requires this Moodle version.
 $plugin->component = 'tool_inactive_user_cleanup'; // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release = '2.4 (Build: 2014080501)';
-
-
