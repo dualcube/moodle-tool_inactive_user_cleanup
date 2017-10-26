@@ -14,10 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * Feedback block installation Course_publish block caps.
- * @package block_course_publish
+ * Feedback tool installation tool_inactive_user_cleanup tool caps.
+ * @package    tool
+ * @subpackage inactive user cleanup
  * @author Sandipa Mukherjee <sandipa@dualcube.com>
- * @copyright DUALCUBE {@link http://dualcube.com/}
+ * @copyright DUALCUBE {@link https://dualcube.com/}
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 /** 
