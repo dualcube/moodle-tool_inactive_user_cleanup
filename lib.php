@@ -41,7 +41,7 @@ function tool_inactive_user_cleanup_cron() {
 
     
     foreach ($users as $usersdetails) {
-        $minus = round((time() - $usersdetails->lastaccess)/60/60/24);
+        $minus = round((time() - max($usersdetails->lastaccess, $userdetails->timecreated))/60/60/24);
         if ($minus > $inactivity) {
             $ischeck = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
             if (!$ischeck) {
