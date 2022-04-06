@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * From for Inactive user cleanup email setting 
+ * From for Inactive user cleanup email setting
  *
  * @package    tool
  * @subpackage Inactive User cleanup
@@ -24,13 +24,16 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-require_once($CFG->libdir.'/formslib.php');
+require_once($CFG->libdir . '/formslib.php');
 require_once($CFG->dirroot . '/user/editlib.php');
 
-class tool_inactive_user_cleanup_config_form extends moodleform {
-    public function definition () {
+class tool_inactive_user_cleanup_config_form extends moodleform
+{
+    public function definition()
+    {
         $mform = $this->_form;
         $mform->addElement('header', 'configheader', get_string('setting', 'tool_inactive_user_cleanup'));
+        $mform->addElement('select', 'config_enabled', get_string('enabled', 'tool_inactive_user_cleanup'), array(0 => get_string('disabled', 'tool_inactive_user_cleanup'), 1 => get_string('enabled', 'tool_inactive_user_cleanup')))->setSelected(0);
         $mform->addElement('text', 'config_daysofinactivity', get_string('daysofinactivity', 'tool_inactive_user_cleanup'));
         $mform->addElement('text', 'config_daysbeforedeletion', get_string('daysbeforedeletion', 'tool_inactive_user_cleanup'));
         $mform->setDefault('config_daysofinactivity', '365');
@@ -40,7 +43,7 @@ class tool_inactive_user_cleanup_config_form extends moodleform {
         $mform->addElement('header', 'config_headeremail', get_string('emailsetting', 'tool_inactive_user_cleanup'));
         $mform->addElement('text', 'config_subjectemail', get_string('emailsubject', 'tool_inactive_user_cleanup'));
         $editoroptions = array('trusttext' => true, 'subdirs' => true, 'maxfiles' => 1,
-        'maxbytes' => 1024);
+            'maxbytes' => 1024);
         $mform->addElement('editor', 'config_bodyemail', get_string('emailbody', 'tool_inactive_user_cleanup'), $editoroptions);
         $mform->setType('config_subjectemail', PARAM_TEXT);
         $mform->setDefault('config_subjectemail', 'subject');

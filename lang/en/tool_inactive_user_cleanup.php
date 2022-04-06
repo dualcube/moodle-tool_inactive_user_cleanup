@@ -31,3 +31,5 @@ $string['emailsetting'] = 'Email Setting';
 $string['emailsubject'] = 'Subject';
 $string['emailbody'] = 'Body';
 $string['runcron'] = 'Run Cron Manually';
+$string['enabled'] = 'Enabled';
+$string['disabled'] = 'Disabled';

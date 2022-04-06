@@ -67,8 +67,9 @@ echo $OUTPUT->header();
 $emailform = new tool_inactive_user_cleanup_config_form();
 $fromdata = $emailform->get_data();
 $configdata = get_config('tool_inactive_user_cleanup');
-if(!empty($configdata->daysbeforedeletion)) {
+if(!empty($configdata->enabled) && !empty($configdata->daysbeforedeletion)) {
 	$data = new stdClass();
+	$data->config_enabled = $configdata->enabled;
 	$data->config_daysbeforedeletion = $configdata->daysbeforedeletion;
 	$data->config_daysofinactivity = $configdata->daysofinactivity;
 	$data->config_subjectemail = $configdata->emailsubject;
@@ -78,6 +79,7 @@ if(!empty($configdata->daysbeforedeletion)) {
 $emailform->display();
 
 if ($emailform->is_submitted()) {
+    set_config('enabled', $fromdata->config_enabled, 'tool_inactive_user_cleanup');
     set_config('daysbeforedeletion', $fromdata->config_daysbeforedeletion, 'tool_inactive_user_cleanup');
     set_config('daysofinactivity', $fromdata->config_daysofinactivity, 'tool_inactive_user_cleanup');
     set_config('emailsubject', $fromdata->config_subjectemail, 'tool_inactive_user_cleanup');

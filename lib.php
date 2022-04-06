@@ -22,15 +22,17 @@
  * @copyright  2014 dualcube {@link https://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || die;
 /*
  * Standard cron function
  */
-require_once($CFG->libdir.'/adminlib.php');
+require_once($CFG->libdir . '/adminlib.php');
 has_capability('moodle/user:delete', context_system::instance());
-function tool_inactive_user_cleanup_cron() {
+function tool_inactive_user_cleanup_cron()
+{
     global $DB, $CFG;
     mtrace("Hey, admin tool inactive user cleanup is running");
+    $enabled = get_config('tool_inactive_user_cleanup', 'enabled');
     $beforedelete = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
     $inactivity = get_config('tool_inactive_user_cleanup', 'daysofinactivity');
     $subject = get_config('tool_inactive_user_cleanup', 'emailsubject');
@@ -39,9 +41,13 @@ function tool_inactive_user_cleanup_cron() {
     $messagetext = html_to_text($body);
     $mainadminuser = get_admin();
 
-    
+    if (!$enabled) {
+        return true;
+    }
+
+
     foreach ($users as $usersdetails) {
-        $minus = round((time() - $usersdetails->lastaccess)/60/60/24);
+        $minus = round((time() - $usersdetails->lastaccess) / 60 / 60 / 24);
         if ($minus > $inactivity) {
             $ischeck = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
             if (!$ischeck) {
@@ -49,8 +55,8 @@ function tool_inactive_user_cleanup_cron() {
                 $record->userid = $usersdetails->id;
                 if (email_to_user($usersdetails, $mainadminuser, $subject, $messagetext)) {
                     mtrace('id');
-                    mtrace($usersdetails->id. '---' .$usersdetails->email);
-                    mtrace('minus'.$minus);
+                    mtrace($usersdetails->id . '---' . $usersdetails->email);
+                    mtrace('minus' . $minus);
                     mtrace('email sent');
                     $record->emailsent = 1;
                     $record->date = time();
@@ -61,19 +67,19 @@ function tool_inactive_user_cleanup_cron() {
         if ($beforedelete != 0) {
             $deleteuserafternotify = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
             if (!empty($deleteuserafternotify)) {
-                mtrace('days before delete'. strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date));
-                $minus_timestamp = strtotime('+' . $minus .' days');
+                mtrace('days before delete' . strtotime('+' . $beforedelete . ' day', $deleteuserafternotify->date));
+                $minus_timestamp = strtotime('+' . $minus . ' days');
 
-                if (($minus_timestamp) >= ( strtotime('+'.$beforedelete.' day', $deleteuserafternotify->date) ) && $minus > $inactivity) {
+                if (($minus_timestamp) >= (strtotime('+' . $beforedelete . ' day', $deleteuserafternotify->date)) && $minus > $inactivity) {
                     if (!isguestuser($usersdetails->id)) {
                         delete_user($usersdetails);
                         mtrace('delete user' . $usersdetails->id);
                     }
-                } elseif($minus <= $inactivity) {
+                } elseif ($minus <= $inactivity) {
                     $DB->delete_records('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
                 }
             }
-        } 
+        }
     }
     return true;
 }
