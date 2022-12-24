@@ -17,8 +17,7 @@
 /**
  * Strings for component 'tool_inactive_user_cleanup', language 'en', branch 'MOODLE_22_STABLE'
  *
- * @package    tool
- * @subpackage inactive user cleanup
+ * @package    tool_inactive_user_cleanup
  * @copyright  2014 Dualcube {@link https://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,7 +26,9 @@ $string['pluginname'] = 'Inactive User Cleanup';
 $string['setting'] = 'Setting Panel';
 $string['daysofinactivity'] = 'Days Of Inactivity';
 $string['daysbeforedeletion'] = 'Days Before Deletion';
+$string['deletiondescription'] = ' (Enter 0 for disable Deletion)';
 $string['emailsetting'] = 'Email Setting';
 $string['emailsubject'] = 'Subject';
 $string['emailbody'] = 'Body';
 $string['runcron'] = 'Run Cron Manually';
+

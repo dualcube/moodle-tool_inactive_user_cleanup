@@ -17,8 +17,7 @@
 /**
  * Defines the capabilities of admin to use admin tool
  *
- * @package    tool
- * @subpackage inactive user cleanup
+ * @package    tool_inactive_user_cleanup
  * @copyright  2014 Dualcube {@link https://dualcube.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

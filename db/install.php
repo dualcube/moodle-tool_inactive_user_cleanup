@@ -14,15 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * Feedback tool installation tool_inactive_user_cleanup tool caps.
- * @package    tool
- * @subpackage inactive user cleanup
+ * installation tool_inactive_user_cleanup tool caps.
+ * @package    tool_inactive_user_cleanup
  * @author Sandipa Mukherjee <sandipa@dualcube.com>
  * @copyright DUALCUBE {@link https://dualcube.com/}
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-/** 
- * return the form
+defined('MOODLE_INTERNAL') || die();
+/**
+ * Code run after the inactive_user_cleanup database tables have been created.
+ * Moves the plugin to the top of the list (of 3)
+ * @return bool
  */
 function xmldb_tool_inactive_user_cleanup_install() {
     global $DB, $CFG;
