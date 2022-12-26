@@ -18,12 +18,12 @@ This is automatically or manually run by cron process.
 
 Some setting is require for this cleanup process.
 
-•   Setting Panel
+â€¢   Setting Panel
 Days of Inactivity is set by the admin user.
 Days Before Deletion is set with zero when admin just wants to notify the inactive user for access the site i.e. in first step. 
 After that when user wants to run cleanup process then Days Before Deletion will set by the admin user.
 
-•   Email setting
+â€¢   Email setting
 
 Admin user must set the subject and body text of the email.
 Cron process
@@ -34,4 +34,4 @@ Admin can uninstall this admin tool from Site administration > Plugins >  Admin 
 
 
 To install, place all files in /admin/tool/inactive_user_cleanup and visit /admin/index.php in your browser.
-This block is written by Dualcube<admin@dulacube.com>.
+This block is written by DualCube<admin@dulacube.com>.
