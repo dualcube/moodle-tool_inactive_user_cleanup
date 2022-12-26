@@ -15,11 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Inactive user cleanup library
+ * The Inactive user cleanup library
  *
- * @package    tool_inactive_user_cleanup
- * @copyright  2014 dualcube {@link https://dualcube.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   tool_inactive_user_cleanup
+ * @author DualCube <admin@dualcube.com>
+ * @copyright Dualcube (https://dualcube.com)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
 /*
@@ -30,8 +31,8 @@ namespace tool_inactive_user_cleanup\task;
 /**
  * Scheduled task for Inactive user cleanup.
  *
- * @copyright  2014 dualcube {@link https://dualcube.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+* @copyright Dualcube (https://dualcube.com)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
     /**
@@ -47,7 +48,7 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
      */
     public function execute() {
         global $DB, $CFG;
-        mtrace("Hey, admin tool inactive user cleanup is running");
+        mtrace(get_string('taskstart','tool_inactive_user_cleanup'));
         $beforedelete = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
         $inactivity = get_config('tool_inactive_user_cleanup', 'daysofinactivity');
         if($inactivity>0){
@@ -64,10 +65,10 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
                         $record = new \stdClass();
                         $record->userid = $usersdetails->id;
                         if (email_to_user($usersdetails, $mainadminuser, $subject, $messagetext)) {
-                            mtrace('id');
+                            mtrace(get_string('userid','tool_inactive_user_cleanup'));
                             mtrace($usersdetails->id. '---' .$usersdetails->email);
-                            mtrace('minus'.$minus);
-                            mtrace('email sent');
+                            mtrace(get_string('userinactivtime','tool_inactive_user_cleanup') . $minus);
+                            mtrace();
                             $record->emailsent = 1;
                             $record->date = time();
                             $lastinsertid = $DB->insert_record('tool_inactive_user_cleanup', $record, false);
@@ -82,18 +83,18 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
                         if ($diff > $beforedelete) {
                             if (!isguestuser($usersdetails->id)) {
                                 delete_user($usersdetails);
-                                mtrace('delete user' . $usersdetails->id);
-                                mtrace('User_Delete Success');
+                                mtrace(get_string('deleteduser','tool_inactive_user_cleanup') . $usersdetails->id);
+                                mtrace(get_string('detetsuccess','tool_inactive_user_cleanup'));
                             }
                         }
                     }
                 }
             }
         }else{
-            mtrace('tool_inactive_user_cleanup disabled for putting invalid value in "Days Of Inactivity", the value should be greater than "0"');
+            mtrace(get_string('invalaliddayofinactivity','tool_inactive_user_cleanup'));
         }
         
 
-        mtrace("tool_inactive_user_cleanup task finished");
+        mtrace(get_string('taskend','tool_inactive_user_cleanup'));
     }//end of function execute()
 }// End of class

@@ -17,9 +17,10 @@
 /**
  * From for Inactive user cleanup email setting
  *
- * @package    tool_inactive_user_cleanup
- * @copyright  2014 dualcube {@link https://dualcube.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   tool_inactive_user_cleanup
+ * @author DualCube <admin@dualcube.com>
+ * @copyright Dualcube (https://dualcube.com)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once('../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');

@@ -17,9 +17,10 @@
 /**
  * Link to inactive user cleanup
  *
- * @package    tool_inactive_user_cleanup
- * @copyright  2014 dualcube {@link https://dualcube.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   tool_inactive_user_cleanup
+ * @author DualCube <admin@dualcube.com>
+ * @copyright Dualcube (https://dualcube.com)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
