@@ -17,17 +17,26 @@
 /**
  * Strings for component 'tool_inactive_user_cleanup', language 'en', branch 'MOODLE_22_STABLE'
  *
- * @package    tool
- * @subpackage inactive user cleanup
- * @copyright  2014 Dualcube {@link https://dualcube.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   tool_inactive_user_cleanup
+ * @author DualCube <admin@dualcube.com>
+ * @copyright DualCube (https://dualcube.com)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 $string['pluginname'] = 'Inactive User Cleanup';
 $string['setting'] = 'Setting Panel';
 $string['daysofinactivity'] = 'Days Of Inactivity';
 $string['daysbeforedeletion'] = 'Days Before Deletion';
+$string['deletiondescription'] = 'Put "0" to disable the cleanup option';
 $string['emailsetting'] = 'Email Setting';
 $string['emailsubject'] = 'Subject';
 $string['emailbody'] = 'Body';
 $string['runcron'] = 'Run Cron Manually';
+$string['invalaliddayofinactivity'] = 'tool_inactive_user_cleanup disabled for putting invalid value in "Days Of Inactivity", the value should be greater than "0"';
+$string['taskstart'] = 'Hey, admin tool inactive user cleanup is running';
+$string['taskend'] = 'tool_inactive_user_cleanup task finished';
+$string['detetsuccess'] = 'User_Delete Success';
+$string['deleteduser'] = 'Deleted user ';
+$string['emailsent'] = 'Email sent';
+$string['userinactivtime'] = 'User is inactive for past day ';
+$string['userid'] = 'USER ID ';
