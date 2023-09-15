@@ -29,6 +29,6 @@ $plugin->version   = 2023091300;        // The current plugin version (Date: YYY
 $plugin->requires  = 2014051200;        // Requires this Moodle version.
 $plugin->component = 'tool_inactive_user_cleanup'; // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release = '2.7.1 (Build: 2023091300)';
+$plugin->release = '2.7.1 (Build: 2023091500)';
 
 
