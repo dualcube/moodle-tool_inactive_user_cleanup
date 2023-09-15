@@ -21,7 +21,6 @@
  * @author DualCube <admin@dualcube.com>
  * @copyright DualCube (https://dualcube.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- *//*
  * tool_inactive_user_cleanup is standard cron function
  */
 namespace tool_inactive_user_cleanup\task;
