@@ -22,11 +22,12 @@
  * @copyright DualCube (https://dualcube.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+namespace tool_inactive_user_cleanup\privacy;
 defined('MOODLE_INTERNAL') || die();
 /*
  * Standard cron function
  */
-namespace tool_inactive_user_cleanup\privacy;
+
 use core_privacy\local\metadata\collection;
 /**
  * Privacy Subsystem implementation for tool_inactive_user_cleanup.
@@ -34,7 +35,8 @@ use core_privacy\local\metadata\collection;
  * @copyright DualCube (https://dualcube.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class provider implements
+namespace tool_inactive_user_cleanup\privacy;
+abstract class provider implements
         \core_privacy\local\metadata\provider,
 
         // The Enrolled Courses Block plugin contains user's enrolled courses.
@@ -48,6 +50,7 @@ class provider implements
       * @return collection A listing of user data stored through this system.
       */
     public static function get_metadata(collection $collection) : collection {
+        // echo("helooooooooooooooooooooooooo");
             $collection->add_database_table(
                 'tool_inactive_user_cleanup',
                 [
