@@ -70,7 +70,7 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
                             mtrace('');
                             $record->emailsent = 1;
                             $record->date = time();
-                            $lastinsertid = $DB->insert_record('tool_inactive_user_cleanup', $record, false);
+                            $DB->insert_record('tool_inactive_user_cleanup', $record, false);
                         }
                     }
                 }

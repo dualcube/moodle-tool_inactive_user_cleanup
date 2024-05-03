@@ -22,6 +22,7 @@
  * @copyright DualCube (https://dualcube.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+use tool_inactive_user_cleanup\privacy\provider;
 require_once('../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
 require_once($CFG->dirroot.'/'.$CFG->admin.'/tool/inactive_user_cleanup/settings_form.php');
@@ -47,5 +48,7 @@ if ($settingsform->is_submitted()) {
     set_config('emailsubject', $fromdata->config_subjectemail, 'tool_inactive_user_cleanup');
     set_config('emailbody', $fromdata->config_bodyemail['text'], 'tool_inactive_user_cleanup');
 }
+// $provider= new provider();
+// $provider->get_metadata();
 
 echo $OUTPUT->footer();

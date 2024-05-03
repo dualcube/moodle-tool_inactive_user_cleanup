@@ -29,13 +29,15 @@ defined('MOODLE_INTERNAL') || die();
  */
 
 use core_privacy\local\metadata\collection;
+use \core_privacy\local\request\approved_userlist;
+use core_privacy\local\request\approved_contextlist;
 /**
  * Privacy Subsystem implementation for tool_inactive_user_cleanup.
  *
  * @copyright DualCube (https://dualcube.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace tool_inactive_user_cleanup\privacy;
+
 abstract class provider implements
         \core_privacy\local\metadata\provider,
 
@@ -50,7 +52,6 @@ abstract class provider implements
       * @return collection A listing of user data stored through this system.
       */
     public static function get_metadata(collection $collection) : collection {
-        // echo("helooooooooooooooooooooooooo");
             $collection->add_database_table(
                 'tool_inactive_user_cleanup',
                 [
@@ -69,7 +70,15 @@ abstract class provider implements
      */
     public static function delete_data_for_all_users_in_context(\context $context) {
         global $DB;
-        if (empty($contextlist->count())) {
+        
+        // When we process user deletions and expiries, we always delete from the user context.
+        // As a result the cohort role assignments would be deleted, which has a knock-on effect with courses
+        // as roles may change and data may be removed earlier than it should be.
+        $allowedcontextlevels = [
+            CONTEXT_SYSTEM,
+            CONTEXT_COURSECAT
+        ];
+        if (!in_array($context->contextlevel, $allowedcontextlevels)) {
             return;
         }
         $userid = $context->get_user()->id;
@@ -83,12 +92,12 @@ abstract class provider implements
      */
     public static function delete_data_for_user(approved_contextlist $contextlist) {
         global $DB;
-
         if (empty($contextlist->count())) {
             return;
         }
-        $userid = $contextlist->get_user()->id;
+       
         foreach ($contextlist->get_contexts() as $context) {
+            $userid = $context->get_user()->id;
             $DB->delete_records('tool_inactive_user_cleanup', ['userid' => $userid]);
         }
     }
@@ -99,8 +108,6 @@ abstract class provider implements
      */
     public static function delete_data_for_users(approved_userlist $userlist) {
         global $DB;
-
-        $context = $userlist->get_context();
         list($userinsql, $userinparams) = $DB->get_in_or_equal($userlist->get_userids(), SQL_PARAMS_NAMED);
         $params = $userinparams;
         $sql = "userid {$userinsql}";
