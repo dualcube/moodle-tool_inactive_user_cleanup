@@ -13,8 +13,9 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
- * installation tool_inactive_user_cleanup tool caps.
+ * The Inactive user cleanup library
  *
  * @package   tool_inactive_user_cleanup
  * @author DualCube <admin@dualcube.com>

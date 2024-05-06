@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines the capabilities of admin to use admin tool
+ * The Inactive user cleanup library
  *
  * @package   tool_inactive_user_cleanup
  * @author DualCube <admin@dualcube.com>

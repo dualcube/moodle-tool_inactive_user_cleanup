@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Inactive user cleanup library
+ * The Inactive user cleanup library
  *
  * @package   tool_inactive_user_cleanup
  * @author DualCube <admin@dualcube.com>
@@ -23,9 +23,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace tool_inactive_user_cleanup\privacy;
-/*
- * Standard cron function
- */
 
 use core_privacy\local\metadata\collection;
 use core_privacy\local\request\approved_userlist;
@@ -132,19 +129,17 @@ class provider implements
     public static function get_contexts_for_userid(int $userid): \core_privacy\local\request\contextlist {
         $contextlist = new \core_privacy\local\request\contextlist();
         $sql = "SELECT c.id
-        FROM {context} c
-        INNER JOIN {user} u ON u.id = :userid
-        LEFT JOIN {tool_inactive_user_cleanup} iu ON iu.userid = u.id
-        WHERE c.contextlevel = :contextlevel
-        AND c.instanceid = u.id
-        AND u.id = :userid";
+                  FROM {context} c
+            INNER JOIN {user} u ON u.id = :userid
+             LEFT JOIN {tool_inactive_user_cleanup} iu ON iu.userid = u.id
+                 WHERE c.contextlevel = :contextlevel
+                       AND c.instanceid = u.id
+                       AND u.id = :userid";
         $params = [
             'contextlevel'      => CONTEXT_MODULE,
             'discussionuserid'  => $userid,
         ];
-
         $contextlist->add_from_sql($sql, $params);
-
         return $contextlist;
     }
 
@@ -178,7 +173,9 @@ class provider implements
             'instanceid' => $instanceid,
         ];
         // Query to get users who authored forum discussions.
-        $sql = "SELECT userid FROM {tool_inactive_user_cleanup} WHERE instanceid = :instanceid";
+        $sql = "SELECT userid 
+                  FROM {tool_inactive_user_cleanup} 
+                 WHERE instanceid = :instanceid";
         // Add users from tool_inactive_user_cleanup table to the userlist.
         $userlist->add_from_sql('userid', $sql, $params);
     }
