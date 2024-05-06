@@ -40,3 +40,7 @@ $string['deleteduser'] = 'Deleted user ';
 $string['emailsent'] = 'Email sent';
 $string['userinactivtime'] = 'User is inactive for past day ';
 $string['userid'] = 'USER ID ';
+$string['privacy:metadata:tool_inactive_user_cleanup'] = 'Information about the inactive users';
+$string['privacy:metadata:tool_inactive_user_cleanup:userid'] = 'Ids of the inactive users';
+$string['privacy:metadata:tool_inactive_user_cleanup:emailsent'] = 'Information about the sent email who are cleaned up';
+$string['privacy:metadata:tool_inactive_user_cleanup:date'] = 'The date when the user will be cleaned';

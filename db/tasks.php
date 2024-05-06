@@ -22,14 +22,14 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
-$tasks = array(
-    array(
+$tasks = [
+    [
         'classname' => 'tool_inactive_user_cleanup\task\tool_inactive_user_cleanup_task',
         'blocking' => 0,
         'minute' => '59',
         'hour' => '23',
         'day' => '*',
         'dayofweek' => '*',
-        'month' => '*'
-    )
-);
+        'month' => '*',
+    ],
+];

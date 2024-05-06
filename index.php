@@ -48,7 +48,5 @@ if ($settingsform->is_submitted()) {
     set_config('emailsubject', $fromdata->config_subjectemail, 'tool_inactive_user_cleanup');
     set_config('emailbody', $fromdata->config_bodyemail['text'], 'tool_inactive_user_cleanup');
 }
-// $provider= new provider();
-// $provider->get_metadata();
 
 echo $OUTPUT->footer();

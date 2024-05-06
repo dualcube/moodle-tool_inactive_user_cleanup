@@ -25,14 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
-    'tool/inactive_user_cleanup:inactive_user_cleanup' => array(
+$capabilities = [
+    'tool/inactive_user_cleanup:inactive_user_cleanup' => [
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array(
-            'manager' => CAP_ALLOW
-        ),
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
+        ],
         'clonepermissionsfrom' => 'moodle/site:inactive_user_cleanups',
-    ),
-);
+    ],
+];

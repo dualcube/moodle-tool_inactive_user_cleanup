@@ -24,13 +24,11 @@
  * tool_inactive_user_cleanup is standard cron function
  */
 namespace tool_inactive_user_cleanup\task;
-defined('MOODLE_INTERNAL') || die();
-
 
 /**
  * Scheduled task for Inactive user cleanup.
  *
-* @copyright DualCube (https://dualcube.com)
+ * @copyright DualCube (https://dualcube.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
@@ -47,53 +45,51 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
      */
     public function execute() {
         global $DB, $CFG;
-        mtrace(get_string('taskstart','tool_inactive_user_cleanup'));
-        $beforedelete = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
+        mtrace(get_string('taskstart' , 'tool_inactive_user_cleanup'));
+        $beforedelete = get_config('tool_inactive_user_cleanup' , 'daysbeforedeletion');
         $inactivity = get_config('tool_inactive_user_cleanup', 'daysofinactivity');
-        if($inactivity>0){
+        if ($inactivity > 0) {
             $subject = get_config('tool_inactive_user_cleanup', 'emailsubject');
             $body = get_config('tool_inactive_user_cleanup', 'emailbody');
-            $users = $DB->get_records('user', array('deleted' => '0'));
+            $users = $DB->get_records('user', ['deleted' => '0']);
             $messagetext = html_to_text($body);
             $mainadminuser = get_admin();
             foreach ($users as $usersdetails) {
                 $minus = round((time() - $usersdetails->lastaccess) / 60 / 60 / 24);
                 if ($minus > $inactivity) {
-                    $ischeck = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
+                    $ischeck = $DB->get_record('tool_inactive_user_cleanup', ['userid' => $usersdetails->id]);
                     if (!$ischeck &&  $usersdetails->lastaccess != 0) {
                         $record = new \stdClass();
                         $record->userid = $usersdetails->id;
                         if (email_to_user($usersdetails, $mainadminuser, $subject, $messagetext)) {
-                            mtrace(get_string('userid','tool_inactive_user_cleanup'));
+                            mtrace(get_string('userid' , 'tool_inactive_user_cleanup'));
                             mtrace($usersdetails->id. '---' .$usersdetails->email);
-                            mtrace(get_string('userinactivtime','tool_inactive_user_cleanup') . $minus);
+                            mtrace(get_string('userinactivtime' , 'tool_inactive_user_cleanup') . $minus);
                             mtrace('');
                             $record->emailsent = 1;
                             $record->date = time();
-                            $DB->insert_record('tool_inactive_user_cleanup', $record, false);
+                            $DB->insert_record('tool_inactive_user_cleanup' , $record, false);
                         }
                     }
                 }
                 if ($beforedelete != 0 &&  $usersdetails->lastaccess != 0) {
-                    $deleteuserafternotify = $DB->get_record('tool_inactive_user_cleanup', array('userid' => $usersdetails->id));
+                    $deleteuserafternotify = $DB->get_record('tool_inactive_user_cleanup' , ['userid' => $usersdetails->id]);
                     if (!empty($deleteuserafternotify)) {
                         $mailssent = $deleteuserafternotify->date;
                         $diff = round((time() - $mailssent) / 60 / 60 / 24);
                         if ($diff > $beforedelete) {
                             if (!isguestuser($usersdetails->id)) {
                                 delete_user($usersdetails);
-                                mtrace(get_string('deleteduser','tool_inactive_user_cleanup') . $usersdetails->id);
-                                mtrace(get_string('detetsuccess','tool_inactive_user_cleanup'));
+                                mtrace(get_string('deleteduser' , 'tool_inactive_user_cleanup') . $usersdetails->id);
+                                mtrace(get_string('detetsuccess' , 'tool_inactive_user_cleanup'));
                             }
                         }
                     }
                 }
             }
-        }else{
-            mtrace(get_string('invalaliddayofinactivity','tool_inactive_user_cleanup'));
+        } else {
+            mtrace(get_string('invalaliddayofinactivity' , 'tool_inactive_user_cleanup'));
         }
-        
-
-        mtrace(get_string('taskend','tool_inactive_user_cleanup'));
+        mtrace(get_string('taskend' , 'tool_inactive_user_cleanup'));
     }//end of function execute()
 }// End of class
