@@ -15,14 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * From for Inactive user cleanup email setting
+ * Data provider.
  *
- * @package   tool_inactive_user_cleanup
- * @author DualCube <admin@dualcube.com>
- * @copyright DualCube (https://dualcube.com)
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    tool_inactive_user_cleanup
+ * @copyright  DualCube (https://dualcube.com)
+ * @author     DualCube <admin@dualcube.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir.'/formslib.php');
 require_once($CFG->dirroot . '/user/editlib.php');
 /**
