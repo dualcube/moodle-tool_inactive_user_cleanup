@@ -15,8 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * tool_inactive_user_cleanup setting file 
- * 
+ * tool_inactive_user_cleanup setting file
+ *
  * @package    tool_inactive_user_cleanup
  * @copyright  DualCube (https://dualcube.com)
  * @author     DualCube <admin@dualcube.com>
