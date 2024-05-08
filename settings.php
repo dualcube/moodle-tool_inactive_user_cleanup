@@ -15,15 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Link to inactive user cleanup
- *
- * @package   tool_inactive_user_cleanup
- * @author DualCube <admin@dualcube.com>
- * @copyright DualCube (https://dualcube.com)
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * tool_inactive_user_cleanup setting file 
+ * 
+ * @package    tool_inactive_user_cleanup
+ * @copyright  DualCube (https://dualcube.com)
+ * @author     DualCube <admin@dualcube.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
+
 if ($hassiteconfig) {
     $ADMIN->add('reports',
         new admin_externalpage('toolinactive_user_cleanup', get_string('pluginname', 'tool_inactive_user_cleanup'),

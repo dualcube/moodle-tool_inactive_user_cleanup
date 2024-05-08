@@ -15,24 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines the capabilities of admin to use admin tool
- *
- * @package   tool_inactive_user_cleanup
- * @author DualCube <admin@dualcube.com>
- * @copyright DualCube (https://dualcube.com)
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Defines the capabilities of admin to use admin tools
+ * 
+ * @package    tool_inactive_user_cleanup
+ * @copyright  DualCube (https://dualcube.com)
+ * @author     DualCube <admin@dualcube.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
-    'tool/inactive_user_cleanup:inactive_user_cleanup' => array(
+$capabilities = [
+    'tool/inactive_user_cleanup:inactive_user_cleanup' => [
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array(
-            'manager' => CAP_ALLOW
-        ),
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
+        ],
         'clonepermissionsfrom' => 'moodle/site:inactive_user_cleanups',
-    ),
-);
+    ],
+];

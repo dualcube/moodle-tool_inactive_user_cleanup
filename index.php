@@ -15,22 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * From for Inactive user cleanup email setting
+ * setting form display and set config variables
  *
- * @package   tool_inactive_user_cleanup
- * @author DualCube <admin@dualcube.com>
- * @copyright DualCube (https://dualcube.com)
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    tool_inactive_user_cleanup
+ * @copyright  DualCube (https://dualcube.com)
+ * @author     DualCube <admin@dualcube.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 require_once('../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
 require_once($CFG->dirroot.'/'.$CFG->admin.'/tool/inactive_user_cleanup/settings_form.php');
+
 require_login();
+
 admin_externalpage_setup('toolinactive_user_cleanup');
 echo $OUTPUT->header();
 $settingsform = new tool_inactive_user_cleanup_config_form();
 $fromdata = $settingsform->get_data();
 $configdata = get_config('tool_inactive_user_cleanup');
+
 if (!empty($configdata->daysbeforedeletion)) {
     $data = new stdClass();
     $data->config_daysbeforedeletion = $configdata->daysbeforedeletion;
@@ -39,6 +43,7 @@ if (!empty($configdata->daysbeforedeletion)) {
     $data->config_bodyemail['text'] = $configdata->emailbody;
     $settingsform->set_data($data);
 }
+
 $settingsform->display();
 
 if ($settingsform->is_submitted()) {
