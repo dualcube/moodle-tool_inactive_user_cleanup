@@ -24,22 +24,22 @@
  */
 
 $string['pluginname'] = 'Inactive User Cleanup';
-$string['setting'] = 'Setting Panel';
-$string['daysofinactivity'] = 'Days Of Inactivity';
-$string['daysbeforedeletion'] = 'Days Before Deletion';
+$string['setting'] = 'Setting panel';
+$string['daysofinactivity'] = 'Days of inactivity';
+$string['daysbeforedeletion'] = 'Days before deletion';
 $string['deletiondescription'] = 'Put "0" to disable the cleanup option';
-$string['emailsetting'] = 'Email Setting';
+$string['emailsetting'] = 'Email setting';
 $string['emailsubject'] = 'Subject';
 $string['emailbody'] = 'Body';
-$string['runcron'] = 'Run Cron Manually';
-$string['invalaliddayofinactivity'] = 'tool_inactive_user_cleanup disabled for putting invalid value in "Days Of Inactivity", the value should be greater than "0"';
-$string['taskstart'] = 'Hey, admin tool inactive user cleanup is running';
-$string['taskend'] = 'tool_inactive_user_cleanup task finished';
-$string['detetsuccess'] = 'User_Delete Success';
-$string['deleteduser'] = 'Deleted user ';
+$string['runcron'] = 'Run cron Manually';
+$string['invalaliddayofinactivity'] = 'Inactive user cleanup disabled for putting invalid value in "Days Of Inactivity", the value should be greater than "0"';
+$string['taskstart'] = 'Hey, admin inactive user cleanup is running';
+$string['taskend'] = 'Inactive user cleanup task finished';
+$string['detetsuccess'] = 'User delete success';
+$string['deleteduser'] = 'Deleted user';
 $string['emailsent'] = 'Email sent';
 $string['userinactivtime'] = 'User is inactive for past day ';
-$string['userid'] = 'USER ID ';
+$string['userid'] = 'user id';
 $string['privacy:metadata:tool_inactive_user_cleanup'] = 'Information about the inactive users';
 $string['privacy:metadata:tool_inactive_user_cleanup:userid'] = 'Ids of the inactive users';
 $string['privacy:metadata:tool_inactive_user_cleanup:emailsent'] = 'Information about the sent email who are cleaned up';
