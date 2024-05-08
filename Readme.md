@@ -12,7 +12,7 @@ This plugin deletes inactive user accounts after a certain number of days set by
 1. Set the number of days of inactivity in the first step, which determines when users receive an email after that many days of inactivity. (If set to "0", the cleanup process will be disabled)
 2. Next, set the "Days Before Deletion," which is the notice period for inactive users before deletion. (If set to "0", then deletion will be disabled)
 3. Draft notification emails for all users from **Site administration > Reports > Inactive User Cleanup**.
-4. If an inactive user is found, they receive the notification email.
+4. If an inactive user is found, they receive the notification email of their removal.
 
 ## Clean up
 1. After receiving the notification email, if the user still has not accessed the Moodle site, the deletion process starts.
