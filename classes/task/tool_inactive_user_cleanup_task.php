@@ -48,7 +48,7 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
     public function execute() {
         global $DB, $CFG;
         mtrace(get_string('taskstart' , 'tool_inactive_user_cleanup'));
-        $beforedelete = get_config('tool_inactive_user_cleanup' , 'daysbeforedeletion');
+        $beforedelete = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
         $inactivity = get_config('tool_inactive_user_cleanup', 'daysofinactivity');
         if ($inactivity == 0) {
             mtrace(get_string('invalaliddayofinactivity' , 'tool_inactive_user_cleanup'));
