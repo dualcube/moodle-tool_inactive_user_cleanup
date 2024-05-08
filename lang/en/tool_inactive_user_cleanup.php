@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Strings for component 'tool_inactive_user_cleanup', language 'en'.
  * @package    tool_inactive_user_cleanup
  * @copyright  DualCube (https://dualcube.com)
  * @author     DualCube <admin@dualcube.com>

@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * tool_inactive_user_cleanup setting form
  * @package    tool_inactive_user_cleanup
  * @copyright  DualCube (https://dualcube.com)
  * @author     DualCube <admin@dualcube.com>
@@ -27,13 +28,13 @@ require_once($CFG->libdir.'/formslib.php');
 require_once($CFG->dirroot . '/user/editlib.php');
 
 /**
- * Email Cofiguration Form for Inactive user cleanup.
+ * settings form for tool_inactive_user_cleanup
  *
  * @copyright DualCube (https://dualcube.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class tool_inactive_user_cleanup_config_form extends moodleform {
-    
+
     /**
      * Definition.
      */
