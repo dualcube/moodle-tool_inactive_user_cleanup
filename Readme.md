@@ -20,7 +20,8 @@ This plugin deletes inactive user accounts after a certain number of days set by
 3. This is automatically or manually run by the cron process.
 
 ## Setting Panel
-[www.yoursitename/admin/tool/inactive_user_cleanup/index.php] / **Site administration > Reports > Inactive User Cleanup**
+if you want to dirrect access you can use this link[www.yoursitename/admin/tool/inactive_user_cleanup/index.php] 
+- or follow this procedure**Site administration > Reports > Inactive User Cleanup**
 - If settings are required for this cleanup process.
 - Days of Inactivity is set by the admin user.
 - Days Before Deletion is set to zero when the admin just wants to notify the inactive user to access the site in the first step. After that, when the user wants to run the cleanup process, Days Before Deletion will be set by the admin user.
