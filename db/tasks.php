@@ -22,6 +22,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
+
 $tasks = [
     [
         'classname' => 'tool_inactive_user_cleanup\task\tool_inactive_user_cleanup_task',

@@ -30,6 +30,7 @@ namespace tool_inactive_user_cleanup\task;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
+
     /**
      * Get a descriptive name for this task (shown to admins).
      *
@@ -38,6 +39,7 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
     public function get_name() {
         return get_string('pluginname', 'tool_inactive_user_cleanup');
     }
+
     /**
      * Execute.
      */
@@ -82,5 +84,5 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
             }
         }
         mtrace(get_string('taskend' , 'tool_inactive_user_cleanup'));
-    }//end of function execute()
+    } // End of function execute()
 }// End of class

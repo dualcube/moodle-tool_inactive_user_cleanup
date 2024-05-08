@@ -22,8 +22,10 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
+
 require_once($CFG->libdir.'/formslib.php');
 require_once($CFG->dirroot . '/user/editlib.php');
+
 /**
  * Email Cofiguration Form for Inactive user cleanup.
  *
@@ -31,6 +33,7 @@ require_once($CFG->dirroot . '/user/editlib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class tool_inactive_user_cleanup_config_form extends moodleform {
+    
     /**
      * Definition.
      */

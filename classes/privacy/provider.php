@@ -44,6 +44,7 @@ class provider implements
     \core_privacy\local\metadata\null_provider,
 
     \core_privacy\local\request\core_userlist_provider {
+
      /**
       * Returns meta data about this system.
       *
@@ -71,6 +72,7 @@ class provider implements
         );
         return $collection;
     }
+
     /**
      * Delete all data for all users in the specified context.
      *
@@ -78,6 +80,7 @@ class provider implements
      */
     public static function delete_data_for_all_users_in_context(\context $context) {
         global $DB;
+
         // When we process user deletions and expiries, we always delete from the user context.
         // As a result the cohort role assignments would be deleted, which has a knock-on effect with courses
         // as roles may change and data may be removed earlier than it should be.
@@ -107,6 +110,7 @@ class provider implements
             $DB->delete_records('tool_inactive_user_cleanup', ['userid' => $userid]);
         }
     }
+
     /**
      * Delete all data for all users in the specified userlist.
      *
@@ -119,6 +123,7 @@ class provider implements
         $sql = "userid {$userinsql}";
         $DB->delete_records_select('tool_inactive_user_cleanup', $sql, $params);
     }
+
     /**
      * Get the list of contexts that contain user information for the specified user.
      *
@@ -154,9 +159,9 @@ class provider implements
             writer::with_context($context)->export_data($subcontext, $data);
         }
     }
+
     /**
      * Get the list of users who have data within a context.
-     *
      * @param   userlist    $userlist   The userlist containing the list of users who have data in this context/plugin combination.
      */
     public static function get_users_in_context(userlist $userlist) {
@@ -165,18 +170,21 @@ class provider implements
         if (!$context instanceof \context_module) {
             return;
         }
+
         // Get the instance ID from the context.
         $instanceid = $context->instanceid;
+
         // Define the SQL parameters.
         $params = [
             'instanceid' => $instanceid,
         ];
+
         // Query to get users who authored forum discussions.
         $sql = "SELECT userid 
                   FROM {tool_inactive_user_cleanup} 
                  WHERE instanceid = :instanceid";
+
         // Add users from tool_inactive_user_cleanup table to the userlist.
         $userlist->add_from_sql('userid', $sql, $params);
     }
-
 }
