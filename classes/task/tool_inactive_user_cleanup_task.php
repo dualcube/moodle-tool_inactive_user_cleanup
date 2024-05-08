@@ -15,7 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * The Inactive user cleanup library
+ * The Inactive user cleanup 
+ * 
  * @package    tool_inactive_user_cleanup
  * @copyright  DualCube (https://dualcube.com)
  * @author     DualCube <admin@dualcube.com>

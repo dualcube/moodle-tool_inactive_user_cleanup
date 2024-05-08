@@ -16,6 +16,7 @@
 
 /**
  * tool_inactive_user_cleanup setting form
+ * 
  * @package    tool_inactive_user_cleanup
  * @copyright  DualCube (https://dualcube.com)
  * @author     DualCube <admin@dualcube.com>

@@ -16,6 +16,7 @@
 
 /**
  * Inactive user cleanup library
+ * 
  * @package    tool_inactive_user_cleanup
  * @copyright  DualCube (https://dualcube.com)
  * @author     DualCube <admin@dualcube.com>
@@ -32,6 +33,7 @@ use core_privacy\local\request\userlist;
 
 /**
  * Privacy Subsystem implementation for tool_inactive_user_cleanup.
+ * 
  * @copyright DualCube (https://dualcube.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

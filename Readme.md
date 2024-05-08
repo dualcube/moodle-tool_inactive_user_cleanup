@@ -3,7 +3,7 @@
 ## Installation
 1. Go to **Site administration > Plugins > Install plugins** and upload or drag & drop the downloaded ZIP file.
 2. To install, place all downloaded files in `/admin/tool/inactive_user_cleanup` and visit `/admin/index.php` in your browser.
-3. This block is developed by DualCube <admin@dulacube.com>.
+3. This block is developed by DualCube <admin@dualcube.com>.
 
 ## Overview
 This plugin deletes inactive user accounts after a certain number of days set by the admin, and sends a mail to the user for login before the deletion date. This cleanup process runs with Moodle cron job.
