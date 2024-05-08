@@ -16,7 +16,7 @@
 
 /**
  * Defines the capabilities of admin to use admin tools
- * 
+ *
  * @package    tool_inactive_user_cleanup
  * @copyright  DualCube (https://dualcube.com)
  * @author     DualCube <admin@dualcube.com>
