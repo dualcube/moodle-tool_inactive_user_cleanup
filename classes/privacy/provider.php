@@ -142,8 +142,8 @@ class provider implements
                        AND c.instanceid = u.id
                        AND u.id = :userid";
         $params = [
-            'contextlevel'      => CONTEXT_MODULE,
-            'discussionuserid'  => $userid,
+            'contextlevel' => CONTEXT_MODULE,
+            'userid'       => $userid,
         ];
         $contextlist->add_from_sql($sql, $params);
         return $contextlist;
