@@ -182,10 +182,12 @@ class provider implements
             'instanceid' => $instanceid,
         ];
 
-        // Query to get users who authored forum discussions.
-        $sql = "SELECT userid 
-                  FROM {tool_inactive_user_cleanup} 
-                 WHERE instanceid = :instanceid";
+        // Query to get users who have valid context.
+        $sql = "SELECT iu.userid 
+                  FROM {tool_inactive_user_cleanup} iu
+                  JOIN {context} c 
+                  WHERE iu.userid = c.instanceid
+                    AND c.instanceid = :instanceid";
 
         // Add users from tool_inactive_user_cleanup table to the userlist.
         $userlist->add_from_sql('userid', $sql, $params);
