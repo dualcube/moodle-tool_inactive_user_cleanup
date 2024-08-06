@@ -136,14 +136,15 @@ class provider implements
         $contextlist = new \core_privacy\local\request\contextlist();
         $sql = "SELECT c.id
                   FROM {context} c
-            INNER JOIN {user} u ON u.id = :userid
+            INNER JOIN {user} u ON u.id = :userid1
              LEFT JOIN {tool_inactive_user_cleanup} iu ON iu.userid = u.id
                  WHERE c.contextlevel = :contextlevel
                        AND c.instanceid = u.id
-                       AND u.id = :userid";
+                       AND u.id = :userid2";
         $params = [
             'contextlevel' => CONTEXT_MODULE,
-            'userid'       => $userid,
+            'userid1'      => $userid,
+            'userid2'      => $userid,
         ];
         $contextlist->add_from_sql($sql, $params);
         return $contextlist;
