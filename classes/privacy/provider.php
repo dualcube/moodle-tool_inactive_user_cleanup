@@ -107,8 +107,8 @@ class provider implements
         if (empty($contextlist->count())) {
             return;
         }
+        $userid = $contextlist->get_user()->id;
         foreach ($contextlist->get_contexts() as $context) {
-            $userid = $context->get_user()->id;
             $DB->delete_records('tool_inactive_user_cleanup', ['userid' => $userid]);
         }
     }
