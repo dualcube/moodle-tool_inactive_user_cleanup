@@ -75,13 +75,15 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
             }
             if ($beforedelete != 0 &&  $usersdetails->lastaccess != 0) {
                 $deleteuserafternotify = $DB->get_record('tool_inactive_user_cleanup', ['userid' => $usersdetails->id]);
-                $beforedelete = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
-                $mailssent = $deleteuserafternotify->date;
-                $diff = round((time() - $mailssent) / 60 / 60 / 24);
-                if (!empty($deleteuserafternotify) && $diff > $beforedelete && !isguestuser($usersdetails->id)) {
-                    delete_user($usersdetails);
-                    mtrace(get_string('deleteduser', 'tool_inactive_user_cleanup') . $usersdetails->id);
-                    mtrace(get_string('detetsuccess', 'tool_inactive_user_cleanup'));
+                if($deleteuserafternotify) {
+                    $beforedelete = get_config('tool_inactive_user_cleanup', 'daysbeforedeletion');
+                    $mailssent = $deleteuserafternotify->date;
+                    $diff = round((time() - $mailssent) / 60 / 60 / 24);
+                    if (!empty($deleteuserafternotify) && $diff > $beforedelete && !isguestuser($usersdetails->id)) {
+                        delete_user($usersdetails);
+                        mtrace(get_string('deleteduser', 'tool_inactive_user_cleanup') . $usersdetails->id);
+                        mtrace(get_string('detetsuccess', 'tool_inactive_user_cleanup'));
+                    }
                 }
             }
         }
