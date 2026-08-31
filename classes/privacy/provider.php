@@ -154,12 +154,16 @@ class provider implements
      * Export all user data for the specified user, in the specified contexts, using the supplied exporter instance.
      * @param   approved_contextlist    $contextlist    The approved contexts to export information for.
      */
-    public static function export_user_data(approved_contextlist $contextlist) {
+    
+     public static function export_user_data(approved_contextlist $contextlist) {
         global $DB;
         $subcontext = $contextlist->get_contexts();
-        $data = $DB->get_records('tool_inactive_user_cleanup');
+         $userid = $contextlist->get_user()->id;
+        $data = $DB->get_record('tool_inactive_user_cleanup', ['userid' => $userid]);
         foreach ($subcontext as $context) {
+            
             writer::with_context($context)->export_data($subcontext, $data);
+            
         }
     }
 

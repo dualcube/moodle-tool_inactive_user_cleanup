@@ -29,5 +29,16 @@ if ($hassiteconfig) {
     $ADMIN->add('reports',
         new admin_externalpage('toolinactive_user_cleanup', get_string('pluginname', 'tool_inactive_user_cleanup'),
         "$CFG->wwwroot/$CFG->admin/tool/inactive_user_cleanup/index.php", 'moodle/site:config'));
-}
+     
+   $setting = new admin_externalpage('tool_inactive_user_cleanup', get_string('pluginname', 'tool_inactive_user_cleanup'),
+                "$CFG->wwwroot/$CFG->admin/tool/inactive_user_cleanup/index.php", 'moodle/site:config');
+     // $ADMIN->add('tools', new admin_category('tool_inactive_user_cleanup_settings', new lang_string('pluginname', 'tool_inactive_user_cleanup')));
+   
+   
+    
 
+    $ADMIN->add('tools', $setting);
+   
+       
+   
+}
