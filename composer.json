@@ -24,9 +24,7 @@
         }
     },
     "require-dev": {
-        "moodlehq/moodle-cs": "^4.4",
-        "phpcompatibility/php-compatibility": "^9.3",
-        "squizlabs/php_codesniffer": "^3.13"
+        
     },
     "scripts": {
         "phpcs": "vendor/bin/phpcs --standard=Moodle --ignore=vendor/*,.git/* .",
