@@ -87,6 +87,25 @@ class tool_inactive_user_cleanup_task extends \core\task\scheduled_task {
                     mtrace('mail did not send');
             }
                 
+               //sending message notification
+               $message = new \core\message\message();
+            
+            $message->component = 'tool_inactive_user_cleanup';
+            $message->name = 'inactiveuserwarning';
+            $message->userfrom = $mainadminuser;
+            $message->userto = $usersdetails;
+            $message->subject = $subject;
+            $message->fullmessage = $messagetext;
+            $message->fullmessageformat = FORMAT_PLAIN;
+            $message->fullmessagehtml = '';
+            $message->smallmessage = 'Your acount is inactivated';
+            $message->notification = 1;
+           
+
+            if (!message_send($message)) {
+                debugging("Failed to send stripepayment enrolment notification to user: {$usersdetails->id}", DEBUG_DEVELOPER);
+            }
+
                 mtrace('mail is value: ' . $usersdetails->email);
                
                
