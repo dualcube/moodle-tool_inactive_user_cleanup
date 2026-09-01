@@ -1,0 +1,10 @@
+inactive_user_cleanup/.git/*
+inactive_user_cleanup/.github/*
+
+inactive_user_cleanup/composer.json
+inactive_user_cleanup/.gitignore
+
+inactive_user_cleanup/vendor/*
+
+inactive_user_cleanup/release/*
+inactive_user_cleanup/exclude.lst

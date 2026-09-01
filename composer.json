@@ -1,6 +1,6 @@
 {
-    "name": "moodle/admin/tool_inactive_user_cleanup",
-    "description": "Stripe Payment enrolment plugin for Moodle",
+    "name": "moodle/tool_inactive_user_cleanup",
+    "description": "Inactive user cleanup tool for admin",
     "type": "moodle-tool",
     "license": "GPL-3.0-or-later",
     "homepage": "https://dualcube.com",
@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "enrol_stripepayment\\": "classes/"
+            "tool_inactive_user_cleanup\\": "classes/"
         }
     },
     "minimum-stability": "stable",
@@ -24,7 +24,7 @@
         }
     },
     "require-dev": {
-        "moodlehq/moodle-cs": "^3.2",
+        "moodlehq/moodle-cs": "^4.4",
         "phpcompatibility/php-compatibility": "^9.3",
         "squizlabs/php_codesniffer": "^3.13"
     },
