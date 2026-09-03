@@ -1,0 +1,24 @@
+{
+  "name": "moodle-tool_inactive_user_cleanup",
+  "version": "2.8.0",
+  "description": "Inactive User Cleanup admin tool for Moodle",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://dualcube.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dualcube/moodle-tool_inactive_user_cleanup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dualcube/moodle-tool_inactive_user_cleanup/issues"
+  },
+  "scripts": {
+    "grunt": "grunt"
+  },
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-eslint": "^24.0.0"
+  }
+}

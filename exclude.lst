@@ -1,0 +1,15 @@
+tool_inactive_user_cleanup/.git/*
+tool_inactive_user_cleanup/.github/*
+tool_inactive_user_cleanup/composer.lock
+tool_inactive_user_cleanup/composer.json
+tool_inactive_user_cleanup/phpcs.xml
+tool_inactive_user_cleanup/.gitignore
+tool_inactive_user_cleanup/package.json
+tool_inactive_user_cleanup/package-lock.json
+tool_inactive_user_cleanup/vendor/*
+tool_inactive_user_cleanup/node_modules/*
+tool_inactive_user_cleanup/phpunit.xml
+tool_inactive_user_cleanup/tests/*
+tool_inactive_user_cleanup/release/*
+tool_inactive_user_cleanup/exclude.lst
+tool_inactive_user_cleanup/Gruntfile.js

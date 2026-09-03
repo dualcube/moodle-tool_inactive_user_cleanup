@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * tool_inactive_user_cleanup setting file
+ * Defines message providers (types of messages being sent).
  *
  * @package    tool_inactive_user_cleanup
  * @copyright  DualCube (https://dualcube.com)
@@ -23,16 +23,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || die();
 
-if ($hassiteconfig) {
-    $ADMIN->add(
-        'tools',
-        new admin_externalpage(
-            'toolinactive_user_cleanup',
-            get_string('pluginname', 'tool_inactive_user_cleanup'),
-            "$CFG->wwwroot/$CFG->admin/tool/inactive_user_cleanup/index.php",
-            'moodle/site:config'
-        )
-    );
-}
+$messageproviders = [
+    'inactivenotice' => [
+        'defaults' => [
+            'email' => MESSAGE_PERMITTED + MESSAGE_DEFAULT_ENABLED,
+        ],
+    ],
+];

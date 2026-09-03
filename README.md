@@ -22,14 +22,21 @@ This plugin deletes inactive user accounts after a certain number of days set by
 ## Setting Panel
 If you want to directly access, you can use this link: [www.yoursitename/admin/tool/inactive_user_cleanup/index.php]
 
-Or follow this procedure: **Site administration > Reports > Inactive User Cleanup**
+Or follow this procedure: **Site administration > Plugins > Admin tools > Inactive User Cleanup**
 
 - If settings are required for this cleanup process.
 - Days of Inactivity is set by the admin user.
 - Days Before Deletion is set to zero when the admin just wants to notify the inactive user to access the site in the first step. After that, when the user wants to run the cleanup process, Days Before Deletion will be set by the admin user.
+- If the user logs back in after being notified but before the deletion date, the pending deletion is automatically cancelled.
 
 ## Email Setting
 - Admin user must set the subject and body text of the email, which the notified inactive user can receive the mail with correct words.
+- Notices are sent through Moodle's core messaging API, so they respect the site's messaging settings and each user's own notification preferences (**Preferences > Notification preferences > Inactive account notice**), rather than emailing unconditionally.
+
+## Scope Setting
+- **Include users who have never logged in**: off by default (never-logged-in accounts are ignored, matching prior versions). When enabled, their inactivity is measured from their account creation date instead of last access.
+- **Restrict to course**: limits the cleanup to users enrolled in a single course, measuring inactivity by that course's last access instead of the site-wide last access. Deletion still removes the full account, so use this to scope *which* users are considered, not to unenrol from a single course.
+- **Exclude cohort**: members of the selected cohort (for example, staff or teachers) are skipped entirely, both for notification and deletion.
 
 ## Cron Process
 - Admin user runs the cron job manually after setting the password for manual cron on **Administration > Security > Site security settings > Cron password for remote access** from [https://site.example.com/admin/cron.php?password=opensesame](https://site.example.com/admin/cron.php?password=opensesame) (replace "opensesame" with your cron password)

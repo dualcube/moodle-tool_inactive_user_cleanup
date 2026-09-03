@@ -25,10 +25,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2025051900;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2024042210;        // Requires Moodle version 4.4.
+$plugin->version   = 2026090300;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->requires  = 2025041410;        // Requires Moodle version 5.0.
+// Tested against Moodle 5.0 through 5.3, including the 5.3dev branch (branches 500-530).
+$plugin->supported = [500, 530];
 $plugin->component = 'tool_inactive_user_cleanup'; // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release = '2.7.6 (Build: 2025051900)';
-
-
+$plugin->release = '2.8.0 (Build: 2026090300)';
